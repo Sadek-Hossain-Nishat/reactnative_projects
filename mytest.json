@@ -1,0 +1,82 @@
+[
+
+    {
+      "productcategory":"Baby Smile",
+      "types":[
+        {
+          "productname":"Baby Smile-Car",
+          "producttype":"Potty-Pink-10105",
+          "productcode":10105,
+          "unitprice":200.00,
+
+          "discount":0
+
+        },
+
+        {
+          "productname":"Baby Smile-Car",
+          "producttype":"Potty-Blue-10106",
+          "productcode":10106,
+          "unitprice":500.00,
+
+          "discount":0
+
+        },
+
+        {
+          "productname":"Baby Smile-Car",
+          "producttype":"Potty-Green-10107",
+          "productcode":10107,
+          "unitprice":300.00,
+
+          "discount":10
+
+        }
+
+
+      ]
+    },
+
+    {
+      "productcategory":"Basket",
+      "types":[
+        {
+          "productname":"Basket-Box",
+          "producttype":"in-45L-Transparent-11018",
+          "productcode":11018,
+          "unitprice":2300.00,
+
+          "discount":0
+
+        },
+
+        {
+          "productname":"Basket-Box",
+          "producttype":"in-60L-Blue-11021",
+          "productcode":11021,
+          "unitprice":3500.00,
+
+          "discount":5
+
+        },
+
+        {
+          "productname":"Basket-Box",
+          "producttype":"in-80L-Green-11025",
+          "productcode":11025,
+          "unitprice":5000.00,
+
+          "discount":10
+
+        }
+
+
+      ]
+    }
+
+
+
+
+  ]
+    
+    
