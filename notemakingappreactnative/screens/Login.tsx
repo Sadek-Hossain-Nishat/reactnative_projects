@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootNavigationProps} from '../src/AppNavigator';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { LongPressGesture } from 'react-native-gesture-handler/lib/typescript/handlers/gestures/longPressGesture';
 interface MyProps {
   navigation: StackNavigationProp<RootNavigationProps, 'Login'>;
 }
@@ -17,21 +18,90 @@ const Login = ({navigation}: MyProps) => {
 
   const validate =()=> {
 
+    let valid = true;
+
+    if (email=='') {
+
+      setBadEmail(true)
+      valid = false
+      
+    }else if (email!='') {
+
+      setBadEmail(false)
+    
+      
+    }
+
+    if (password == '') {
+      setBadPassword(true)
+
+      valid = false;
+      
+    }else if (password!='') {
+
+      setBadPassword(false)
+      
+    }
 
 
+
+
+    return valid
+
+
+
+
+  }
+
+
+  const login =async()=>{
+
+    const headers  = new Headers();
+
+    headers.append("Content-Type","application/json")
+
+    const body ={email:email,password:password}
+    const res = await fetch('https://chartreuse-green-bear-yoke.cyclic.app/api/auth/login',{
+
+      headers:headers,
+      method:'POST',
+      body:JSON.stringify(body)
+
+    })
+
+    const data = await res.json()
+
+    console.log(data)
 
   }
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Welcome Back</Text>
 
-      <TextInput placeholder="Enter Email" style={styles.input} />
-      <TextInput placeholder="Enter Password" style={styles.input} />
+      <TextInput value={email} onChangeText={txt=>setEmail(txt)} placeholder="Enter Email" style={styles.input} />
 
-      <TouchableOpacity style={styles.loginBtn}>
+      {badEmail && <Text style={styles.errorText}>Please Enter Email</Text>}
+
+      
+      <TextInput value={password} onChangeText={txt=>setPassword(txt)} placeholder="Enter Password" style={styles.input} />
+
+      {badPassword && <Text style={styles.errorText}>Please Enter Password</Text>}
+
+      <TouchableOpacity style={styles.loginBtn} 
+      onPress={()=>{
+        if(validate()){
+
+          login()
+
+        }
+      }}
+      >
         <Text style={styles.btnText}>Login</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.loginBtn,{backgroundColor:'white',borderWidth:1,borderColor:'black'}]}>
+      <TouchableOpacity style={[styles.loginBtn,{backgroundColor:'white',borderWidth:1,borderColor:'black'}]} 
+      onPress={()=>{
+        navigation.navigate("Signup")
+      }}>
         <Text style={[styles.btnText,{color:'black'}]}>Create Account</Text>
       </TouchableOpacity>
     </View>
@@ -75,5 +145,10 @@ const styles = StyleSheet.create({
   btnText:{
     color:'white',
     fontSize:16
+  },
+  errorText:{
+    color:'red',
+    marginLeft:20,
+    marginTop:5
   }
 });
